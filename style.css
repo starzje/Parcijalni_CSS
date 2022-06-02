@@ -1,8 +1,8 @@
 /* Varijable za boje */
 :root {
- --clr-prviBox: #525252;
- --clr-drugiBox: #C48080;
- --clr-treciBox: #FDCC98;
+ --clr-prviBox: rgba(82, 82, 82, 0.75);
+ --clr-drugiBox: rgba(196, 128, 128, 0.75);
+ --clr-treciBox: rgba(253, 204, 152, 0.75);
  --clr-background: #d3d3d3;
 }
 
@@ -15,6 +15,9 @@
 
 body {
  background-color: var(--clr-background);
+ background-image: url(./img/bg_img.webp);
+ background-repeat: no-repeat;
+ background-size: cover;
 }
 
 /* Stiliziranje teksta unutar svih kontenjera*/
@@ -38,6 +41,7 @@ body {
 .box {
  width: 15.5em;
  height: 12.5em;
+ border: 2px solid #fff;
  /* Centriranje teksta unutar kutije */
  display: flex;
  justify-content: center;
