@@ -1,0 +1,117 @@
+/* Varijable za boje */
+:root {
+ --clr-prviBox: #525252;
+ --clr-drugiBox: #C48080;
+ --clr-treciBox: #FDCC98;
+ --clr-background: #d3d3d3;
+}
+
+/* basic CSS reset i boja pozadine */
+* {
+ padding: 0;
+ margin: 0;
+ box-sizing: border-box;
+}
+
+body {
+ background-color: var(--clr-background);
+}
+
+/* Stiliziranje teksta unutar svih kontenjera*/
+.box__text {
+ font-size: 4rem;
+ font-weight: 900;
+ font-family: sans-serif;
+ color: #fff;
+}
+
+/* wrapper kotenjer za centriranje svih elemenata na sredinu stranice*/
+.container {
+ height: 100vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap: 4em;
+}
+
+/* Klasa za oblikovanje svih kutija (boxova) */
+.box {
+ width: 15.5em;
+ height: 12.5em;
+ /* Centriranje teksta unutar kutije */
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ /* animacija s malim skokom na kraju */
+ animation: animacijaPremaDole cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.8s forwards;
+ /* Transform -500 da im početna pozicija bude izvan ekrana, scale je tu zbog zadnje animacije*/
+ transform: translateY(-500px);
+ scale: 0.8;
+ /* prefix za Google Chrome jer mi "scale" nije radio pravilno u Chromeu, nego samo u firefoxu */
+ -webkit-transform: translateY(-500px) scale(0.8);
+ /* opacity:0 je fallback za ultra velike ekrane i mobitele, da su elementi uvijek na početku "nevidljivi" (izvan ekrana), za slučaj da na nekom velikom ekranu (ili u mobilnoj verziji) kutije budu i dalje vidljive na početku animacije */
+ opacity: 0;
+}
+
+/* Stiliziranje svake kutije individualno */
+.box--first {
+ background-color: var(--clr-prviBox);
+}
+
+.box--second {
+ background-color: var(--clr-drugiBox);
+ animation-delay: 1.8s;
+}
+
+.box--third {
+ background-color: var(--clr-treciBox);
+ animation-delay: 3.3s;
+}
+
+/* Upravljanje animacijom, 0% keyframe nije potreban jer su na početnoj poziciji kutije već izvan ekrana. Zadnji keyframei su korišteni da izgleda ko da su kutije "upale u svoje mjesto" pomoću scalea*/
+@keyframes animacijaPremaDole {
+ 80% {
+  transform: translateY(0px);
+  scale: 1.1;
+  -webkit-transform: translateY(0px) scale(1.1);
+  opacity: 100;
+ }
+
+ 88% {
+  transform: translateY(1px);
+  scale: 1;
+  -webkit-transform: translateY(1px) scale(1);
+  opacity: 100;
+ }
+
+ 92% {
+  transform: translateY(-1px);
+  scale: 1.01;
+  -webkit-transform: translateY(-1px) scale(1.01);
+  opacity: 100;
+ }
+
+ 100% {
+  transform: translateY(0px);
+  scale: 1;
+  -webkit-transform: translateY(0px) scale(1);
+  opacity: 100;
+ }
+}
+
+/* Responzivnost za male ekrane */
+@media only screen and (max-width: 600px) {
+ .container {
+  flex-direction: column;
+  gap: 2em;
+ }
+
+ .box__text {
+  font-size: 2.5rem;
+ }
+
+ .box {
+  width: 12.5em;
+  height: 9.3em;
+ }
+}
